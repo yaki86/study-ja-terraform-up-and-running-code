@@ -1,3 +1,6 @@
+This repository is a personal study repository based on:
+https://github.com/brikis98/terraform-up-and-running-code
+
 # Terraform: Up & Running Code
 
 This repo contains the code samples for the book *[Terraform: Up and Running](http://www.terraformupandrunning.com)*, 
