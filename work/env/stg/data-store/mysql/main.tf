@@ -10,8 +10,8 @@ resource "aws_db_instance" "example" {
   skip_final_snapshot = true
   db_name             = "example_database"
 
-  username = var.db_username
-  password = var.db_password
+  username = local.db_creds.username
+  password = local.db_creds.password
 }
 
 terraform {
@@ -20,4 +20,14 @@ terraform {
     key    = "stage/data-stores/mysql/terraform.tfstate"
     region = "us-east-2"
   }
+}
+
+data "aws_secretsmanager_secret_version" "creds" {
+  secret_id = "db-creds"
+}
+
+locals {
+  db_creds = jsondecode(
+    data.aws_secretsmanager_secret_version.creds.secret_string
+  )
 }
